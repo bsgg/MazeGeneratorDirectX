@@ -1,5 +1,9 @@
 #include "MazeA.h"
 #include <time.h>
+#include <Windows.h>
+#include <sstream>
+#include <iostream>
+
 
 MazeA::Node::Node()
 {
@@ -61,6 +65,7 @@ void MazeA::Init()
 		// Init array nodes
 		listNodes = new Node[width * height];
 
+		int nPickups = 10;
 		Node * current;
 		// Setup crucial nodes
 		for (int i = 0; i < width; i++)
@@ -75,6 +80,17 @@ void MazeA::Init()
 					current->SetY(j);
 					current->SetDirections(15); //Assume that all directions can be explored (4 youngest bits set)
 					current->SetLabel(' ');
+
+					// Random 40% to set this index as a pickup
+					if (nPickups > 0)
+					{
+						int pickupChance = rand() % 100;
+						if (pickupChance < 10)
+						{
+							listPickups.push_back(i + j * width);
+							nPickups--;
+						}
+					}
 				}
 				else
 				{
@@ -88,6 +104,23 @@ void MazeA::Init()
 		//Seed random generator
 		srand(time(NULL));
 	}
+
+	// Check pickups
+	std::stringstream ss;
+	ss << " Pickups "<<std::endl;
+	//OutputDebugString(ss.str().c_str());
+
+	//const char* output = ss.str().c_str();
+	
+
+	for (int i : listPickups)
+	{
+		ss <<" ( " << listNodes[i].X()<<" , " <<listNodes[i].Y() <<" ) " << std::endl;
+	}
+	int d = 0;
+	//OutputDebugString(ss.str().c_str());*/
+
+
 }
 void MazeA::Generate()
 {
@@ -145,6 +178,20 @@ void MazeA::Generate()
 	GetCoordFromQuadrant(endQuadrant, xStart, yStart);
 	EndNode.SetX(xStart);
 	EndNode.SetY(yStart);
+
+	// Remove the pickups if they are in the list
+	for (int i = listPickups.size() - 1; i >=0 ; i--)
+	{
+		int x = listNodes[listPickups[i]].X();
+		int y = listNodes[listPickups[i]].Y();
+
+		// Remove pickup
+		if ((StartNode.X() == x && StartNode.Y() == y) || (EndNode.X() == x && EndNode.Y() == y))
+		{
+			listPickups.erase(listPickups.begin() + i);
+		}
+
+	}
 
 }
 

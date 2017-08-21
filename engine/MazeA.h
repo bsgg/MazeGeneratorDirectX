@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Graphics.h"
+#include <vector>
 
 class MazeA
 {
@@ -87,6 +88,9 @@ public:
 private:
 	Node * LinkNode(Node * node);
 	void GetCoordFromQuadrant(int quadrant, int& x, int& y);
+
+	
+	std::vector<int> listPickups;
 
 private:
 	bool init = false;
