@@ -118,46 +118,33 @@ void MazeA::Generate()
 	StartNode.SetX(xStart);
 	StartNode.SetY(yStart);
 
-	// end quadrant will be the opposite to startQuadrant
-	/*int endQuadrant = 0;
-	char label = ' ';
-	do
-	{
+	int endQuadrant = -1;
+	// Set end quadrant
 	switch (startQuadrant)
 	{
 		// LeftTop
-		case 0:
-			xStart = 1;
-			yStart = rand() % (width/2); 
-			endQuadrant = 2;
+	case 0:
+		endQuadrant = 2;
 		break;
 		// RightTop
-		case 1:
-			xStart = width - 2;
-			yStart = rand() % (width / 2);
-			endQuadrant = 3;
+	case 1:
+		endQuadrant = 3;
 		break;
 
 		// RigthBottom
-		case 2:
-			xStart = width - 2;
-			yStart = rand() % (width / 2) + width;
-			endQuadrant = 0;
+	case 2:
+		endQuadrant = 0;
 		break;
 
 		// LeftBottom
-		case 3:
-			xStart = 1;
-			yStart = rand() % (width / 2) + width;
-			endQuadrant = 1;
+	case 3:
+		endQuadrant = 1;
 		break;
-		label = listNodes[xStart + yStart * width].Label();
 	}
 
-
-	} while (label == '#');*/
-
-	
+	GetCoordFromQuadrant(endQuadrant, xStart, yStart);
+	EndNode.SetX(xStart);
+	EndNode.SetY(yStart);
 
 }
 
