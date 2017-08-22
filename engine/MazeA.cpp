@@ -105,20 +105,14 @@ void MazeA::Init()
 		srand(time(NULL));
 	}
 
-	// Check pickups
-	std::stringstream ss;
-	ss << " Pickups "<<std::endl;
-	//OutputDebugString(ss.str().c_str());
-
-	//const char* output = ss.str().c_str();
-	
-
+	// Check pickups (important use w strings)
+	std::wstringstream ss;
+	ss << L" List Pickups: "<<std::endl;
 	for (int i : listPickups)
 	{
-		ss <<" ( " << listNodes[i].X()<<" , " <<listNodes[i].Y() <<" ) " << std::endl;
+		ss << L"   Coord ( " << listNodes[i].X()<<L" , " <<listNodes[i].Y() << L" ) " << std::endl;
 	}
-	int d = 0;
-	//OutputDebugString(ss.str().c_str());*/
+	OutputDebugStringW(ss.str().c_str());	
 
 
 }
@@ -434,6 +428,8 @@ void MazeA::Draw(Graphics& gfx) const
 				colorCell = { 166, 255,51 };
 			}
 			
+
+			// Paint pickups
 
 			gfx.DrawRect(border, borderColor);
 			gfx.DrawRect(cell, colorCell);
