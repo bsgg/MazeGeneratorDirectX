@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Graphics.h"
+
 class Tableboard
 {
 private:
@@ -40,6 +42,7 @@ public:
 
 	// Constructor de la clase
 	Tableboard(Position pos, Position endpos);
+	void Draw(Graphics& gfx) const;
 
 
 };

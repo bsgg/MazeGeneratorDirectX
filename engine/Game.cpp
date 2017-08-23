@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	table({ 1,8 }, { 7, 2 })
 {
 	mazeA.Init();
 	mazeA.Generate();
@@ -46,6 +47,8 @@ void Game::ComposeFrame()
 {
 	//maze.Draw(gfx);
 
-	mazeA.Draw(gfx);
+	//mazeA.Draw(gfx);
+
+	table.Draw(gfx);
 
 }

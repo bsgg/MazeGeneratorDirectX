@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Maze.h"
 #include "MazeA.h"
+#include "Tableboard.h"
 
 class Game
 {
@@ -48,4 +49,6 @@ private:
 	Maze maze;
 
 	MazeA mazeA;
+
+	Tableboard table;
 };
