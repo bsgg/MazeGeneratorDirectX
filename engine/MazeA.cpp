@@ -134,10 +134,31 @@ void MazeA::Generate()
 
 	} while (last != start);
 
-	// Set Start, End position
+	
+	// Divided the maze in 2 parts north (0), or south(1).
+	// Select one of each parts randomly
+	// Get start and end location, opposite side for each point
+	int vside = rand() % 100;
+	if (vside < 50)
+	{
+		//vside = 0; // North
+		GetStartLocation(0, xStart, yStart);
+		GetStartLocation(1, xEnd, yEnd);
+	}
+	else
+	{
+		//vside = 1; // South
+		GetStartLocation(1, xStart, yStart);
+		GetStartLocation(0, xEnd, yEnd);
+	}
+	
+
+
+
+
 
 	// Get a random quadrant for start position // 0: LeftTop, 1: RightTop, 2: RigthBottom, 3: LeftBottom
-	int startQuadrant = rand() % 4;
+	/*int startQuadrant = rand() % 4;
 	int xStart = -1;
 	int yStart = -1;
 
@@ -172,7 +193,7 @@ void MazeA::Generate()
 	GetCoordFromQuadrant(endQuadrant, xStart, yStart);
 	EndNode.SetX(xStart);
 	EndNode.SetY(yStart);
-
+	*/
 	// Remove the pickups if they are in the list
 	for (int i = listPickups.size() - 1; i >=0 ; i--)
 	{
@@ -187,6 +208,67 @@ void MazeA::Generate()
 
 	}
 
+}
+
+void MazeA::GetStartLocation(const int vside, int&x, int& y)
+{
+
+	// Select left (0) or right(1) side
+	int hside = rand() % 100;
+	if (hside < 50)
+	{
+		hside = 0; // left
+	}
+	else
+	{
+		hside = 1; // right
+	}
+
+
+	// Select random Y from 2 to 5 (avoid ends, they will be no path always)
+	int auxY = (rand() % 3) + 2;
+
+	// North side
+	if (vside == 0)
+	{
+		y = height - auxY; 
+	}
+	else if (vside == 1) // South side
+	{
+		y = auxY;
+	}
+
+	
+	// Gets first not path, selects random start x position
+	int randX = (rand() % 3) + 2;
+
+	if (hside == 0) // Left side
+	{
+		for (int auxX = randX; auxX < (width - 1); auxX++)
+		{
+			int index = auxX + y * width;
+			if (listNodes[index].Label() == ' ')
+			{
+				x = auxX;
+				break;
+			}
+		}		
+	}
+	else if (hside == 1) // rigth side
+	{
+		for (int auxX = (width - randX); auxX > 1; auxX--)
+		{
+			int index = auxX + y * width;
+			if (listNodes[index].Label() == ' ')
+			{
+				x = auxX;
+				break;
+			}
+		}
+	}
+
+	//x = auxX;
+	//y = auxY;
 }
 
 void MazeA::GetCoordFromQuadrant(int quadrant, int& x, int& y)
@@ -416,14 +498,15 @@ void MazeA::Draw(Graphics& gfx) const
 			}
 
 			// Draw Start node
-			if (x == StartNode.X() && y == StartNode.Y())
+			//if (x == StartNode.X() && y == StartNode.Y())
+			if (x == xStart && y == yStart)
 			{
 				colorCell = { 255,181,51 };
 			}
 			
 
 			// Draw End node
-			if (x == EndNode.X() && y == EndNode.Y())
+			if (x == xEnd && y == yEnd)
 			{
 				colorCell = { 166, 255,51 };
 			}

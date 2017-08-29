@@ -47,8 +47,8 @@ void Game::ComposeFrame()
 {
 	//maze.Draw(gfx);
 
-	//mazeA.Draw(gfx);
+	mazeA.Draw(gfx);
 
-	table.Draw(gfx);
+	//table.Draw(gfx);
 
 }

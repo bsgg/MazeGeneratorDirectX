@@ -88,6 +88,7 @@ public:
 private:
 	Node * LinkNode(Node * node);
 	void GetCoordFromQuadrant(int quadrant, int& x, int& y);
+	void GetStartLocation(const int vside, int&x, int& y);
 
 	
 	std::vector<int> listPickups;
@@ -103,6 +104,12 @@ private:
 
 	Node StartNode;
 	Node EndNode;
+
+	int xStart;
+	int yStart;
+
+	int xEnd;
+	int yEnd;
 
 
 };
