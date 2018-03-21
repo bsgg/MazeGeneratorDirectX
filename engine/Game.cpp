@@ -60,8 +60,24 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
 
-
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		currentSolution += 1;
+		if (currentSolution >= SolutionList.size())
+		{
+			currentSolution = 0;
+		}
+	}
 }
 
 void Game::ComposeFrame()
