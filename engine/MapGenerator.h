@@ -18,8 +18,6 @@ namespace RecursiveMapGenerator
 
 		void GenerateGrid(Matrix2D<EMapDefinitions::XCOLS, EMapDefinitions::YROWS, int> grid, Coords coord, EShapeType shapeType, int totalShapes);
 
-		void Draw(Graphics& gfx) const;
-
 
 		int GetShapesNumber() const;
 		int GetSolutionNumber() const;

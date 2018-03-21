@@ -16,7 +16,7 @@ namespace RecursiveMapGenerator
 	};
 
 	// Definitions for the solutions recursive map
-	enum EMapDefinitions { XCOLS = 6, YROWS = 2, TOTALSHAPES = 2, SIZESHAPE = 3 };
+	enum EMapDefinitions { XCOLS = 8, YROWS = 17, TOTALSHAPES = 14, SIZESHAPE = 3 };
 
 	// Tile types that we can find in the map
 	enum ETileType { 
