@@ -27,6 +27,11 @@
 #include "MazeA.h"
 #include "Tableboard.h"
 
+#include "MapGenerator.h"
+#include "Definitions.h"
+
+using namespace RecursiveMapGenerator;
+
 class Game
 {
 public:
@@ -51,4 +56,8 @@ private:
 	MazeA mazeA;
 
 	Tableboard table;
+
+	// recursive map
+	vector<Matrix2D<EMapDefinitions::XCOLS, EMapDefinitions::YROWS, int>> SolutionList;
+	int currentSolution = 0;
 };

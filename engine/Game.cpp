@@ -29,6 +29,25 @@ Game::Game( MainWindow& wnd )
 {
 	mazeA.Init();
 	mazeA.Generate();
+
+
+	// Recursive map generation
+	Matrix2D<EMapDefinitions::XCOLS, EMapDefinitions::YROWS, int> auxMap;
+	auxMap.Initialize(ETileType::CLEAN);
+
+	Coords coord(0, 0);
+	MapGenerator generatedMap;
+	generatedMap.GenerateGrid(auxMap, coord, EShapeType::NONE, EMapDefinitions::TOTALSHAPES);
+
+	int numSolutions = generatedMap.SolutionList.size();
+	
+
+	// Take first solution
+	if (numSolutions > 0)
+	{
+		SolutionList = generatedMap.SolutionList;
+	}
+
 }
 
 void Game::Go()
@@ -41,14 +60,62 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+
+
 }
 
 void Game::ComposeFrame()
 {
 	//maze.Draw(gfx);
 
-	mazeA.Draw(gfx);
+	//mazeA.Draw(gfx);
 
 	//table.Draw(gfx);
+	
+	
+	if (SolutionList.size() > 0)
+	{
+		Vei2 topLeft(50, 50);
+
+		int cellSize = 25;
+		int border = 3;
+
+		Color noWalkColor = { 59,59,59 };
+		Color walkColor = { 110,206,238 };
+		Color borderColor = { 200,200,200 };
+
+		Color startNode = { 255,181,51 };
+		Color endNode = { 166, 255,51 };
+
+		for (int x = 0; x < EMapDefinitions::XCOLS; x++)
+		{
+			for (int y = 0; y < EMapDefinitions::YROWS; y++)
+			{
+				RectI cell(topLeft.x + (x * cellSize),
+					topLeft.x + ((x * cellSize) + cellSize),
+					topLeft.y + (y * cellSize),
+					topLeft.y + ((y * cellSize) + cellSize));
+
+				RectI border(cell.left - border, cell.right + border, cell.top - border, cell.bottom + border);
+
+				Color colorCell = { 0,0,0 };
+				if (SolutionList[currentSolution].matrix[x][y] == ETileType::OCCUPIED)
+				{
+					colorCell = { 110,206,238 };
+
+				}
+				else
+				{
+					colorCell = { 59,59,59 };
+
+				}
+
+
+				gfx.DrawRect(border, borderColor);
+				gfx.DrawRect(cell, colorCell);
+
+			}
+		}
+	}
 
 }

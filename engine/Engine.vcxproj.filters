@@ -16,6 +16,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RecursiveMapGenerator">
+      <UniqueIdentifier>{d096d7d6-15f5-436c-a806-7d41972a8528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RecursiveMapGenerator">
+      <UniqueIdentifier>{b0af30f2-181a-42d3-8208-ff1e1b03d445}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -72,6 +78,15 @@
     <ClInclude Include="Tableboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Definitions.h">
+      <Filter>Header Files\RecursiveMapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\RecursiveMapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Header Files\RecursiveMapGenerator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -115,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="Tableboard.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\RecursiveMapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files\RecursiveMapGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
