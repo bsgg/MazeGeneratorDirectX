@@ -40,7 +40,7 @@ private:
 
 public:
 
-	// Constructor de la clase
+	// Class constructor
 	Tableboard(Position pos, Position endpos);
 	void Draw(Graphics& gfx) const;
 

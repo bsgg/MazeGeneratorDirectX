@@ -35,7 +35,7 @@ Game::Game( MainWindow& wnd )
 	Matrix2D<EMapDefinitions::XCOLS, EMapDefinitions::YROWS, int> auxMap;
 	auxMap.Initialize(ETileType::CLEAN);
 
-	Coords coord(0, 0);
+	/*Coords coord(0, 0);
 	MapGenerator generatedMap;
 	generatedMap.GenerateGrid(auxMap, coord, EShapeType::NONE, EMapDefinitions::TOTALSHAPES);
 
@@ -46,7 +46,7 @@ Game::Game( MainWindow& wnd )
 	if (numSolutions > 0)
 	{
 		SolutionList = generatedMap.SolutionList;
-	}
+	}*/
 
 }
 
@@ -82,14 +82,14 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	//maze.Draw(gfx);
+	maze.Draw(gfx);
 
 	//mazeA.Draw(gfx);
 
 	//table.Draw(gfx);
 	
 	
-	if (SolutionList.size() > 0)
+	/*if (SolutionList.size() > 0)
 	{
 		Vei2 topLeft(50, 50);
 
@@ -132,6 +132,6 @@ void Game::ComposeFrame()
 
 			}
 		}
-	}
+	}*/
 
 }
